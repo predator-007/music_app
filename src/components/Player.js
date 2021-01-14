@@ -11,18 +11,19 @@ export var SONGS=["scam","krish","roja","Ramuloo Ramulaa","Butta Bomma","love me
 console.log(SONGS);
 function Player(){
     const [check,setcheck]=useState(false);
-    const [songs,setsongs]=useState(SONGS);
+    const [songs]=useState(SONGS);
     const [currentsongindex, setcurrentsongindex] = useState(0);
     const [isPlaying,setisPlaying]=useState(false);
     const [mode,setmode]=useState("repeat");
     const changenextSong= ()=>{
         setcurrentsongindex((currentsongindex+1)%songs.length)
     }
+    /*
     useEffect(
         ()=>{
             SONGS=JSON.parse(localStorage.getItem("SONGS"));
         }
-    ,[songs]);
+    ,[songs]);*/
     const changeprevSong=()=>{
         var k=currentsongindex-1;
         if(k===-1)
@@ -45,9 +46,9 @@ function Player(){
       bodyFormData.append("name",name);
       bodyFormData.append("track",track)
       console.log(bodyFormData);
-      SONGS.push(name);
-      localStorage.setItem("SONGS",JSON.stringify(SONGS));
-      setsongs(SONGS);
+      //SONGS.push(name);
+      //localStorage.setItem("SONGS",JSON.stringify(SONGS));
+      //setsongs(SONGS);
       Axios({
          method: 'post',
          url: 'https://musicapi007.herokuapp.com/write',
@@ -64,9 +65,9 @@ function Player(){
          });
         };
     const deletesong=(name)=>{
-        SONGS.splice(SONGS.indexOf(name));
-        localStorage.setItem("SONGS",JSON.stringify(SONGS));
-        setsongs(SONGS);
+        //SONGS.splice(SONGS.indexOf(name));
+        //localStorage.setItem("SONGS",JSON.stringify(SONGS));
+        //setsongs(SONGS);
         Axios.get("https://musicapi007.herokuapp.com/delete/"+name);
     }
 return(
