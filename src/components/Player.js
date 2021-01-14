@@ -5,8 +5,9 @@ import Lib from './Lib';
 import Container from '@material-ui/core/Container';
 import Collapse from '@material-ui/core/Collapse';
 import Axios from  'axios'; 
-var a=localStorage.getItem("SONGS");
-export var SONGS=JSON.parse(a);
+//var a=localStorage.getItem("SONGS");
+//export var SONGS=JSON.parse(a);
+export var SONGS=["scam","krish","roja","Ramuloo Ramulaa","Butta Bomma","love me like you do","Faded","Tujhe kitna Chahne Lage"]
 console.log(SONGS);
 function Player(){
     const [check,setcheck]=useState(false);
