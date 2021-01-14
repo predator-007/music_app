@@ -16,7 +16,8 @@ const Songlist=(
         setisPlaying(!isPlaying)
     }
     return(
-        <li class={isPlaying&SONGS.indexOf(song)===currentsongindex?"fa fa-music fa-lg list-group-item list-group-item-success":"fa fa-music fa-lg list-group-item list-group-item"}
+        <li class={isPlaying//&SONGS.indexOf(song)===currentsongindex
+            ?"fa fa-music fa-lg list-group-item list-group-item-success":"fa fa-music fa-lg list-group-item list-group-item"}
         ><button className="btn" onClick={()=>changesong(SONGS.indexOf(song))}>{song}</button>
         <button style={
            { marginLeft: "80px"} 
