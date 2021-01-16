@@ -4,6 +4,7 @@ import Lib from './Lib';
 import Container from '@material-ui/core/Container';
 import Collapse from '@material-ui/core/Collapse';
 import Axios from  'axios'; 
+import Fade  from '@material-ui/core/Fade';
 var data;
 var a=[];
 async function getdata(){
@@ -46,6 +47,7 @@ function Player(){
     const [currentsongindex, setcurrentsongindex] = useState(0);
     const [isPlaying,setisPlaying]=useState(false);
     const [mode,setmode]=useState("repeat");
+    const [fade,setfade]=useState(false);
     const changenextSong= ()=>{
         setcurrentsongindex((currentsongindex+1)%songs.length)
     }
@@ -141,6 +143,16 @@ return(
         </div>
     <br></br>
     <Container>
+    <br></br>
+        <div>
+        <div className="row justify-content-center">
+        <span className="fa fa-plus fa-lg" onClick={()=>{
+          setfade(!fade)
+      }}></span>
+      </div>
+      </div>
+      <br></br>
+    <Fade in={fade}>
     <div className="form-group">
     <input className="form-control" type="text" placeholder="song name"
     onChange={(e)=>{handlename(e)}}
@@ -148,6 +160,7 @@ return(
     <input className="form-control-file" type="file" onChange={(e)=>{handlefile(e)}}></input>
     <button className='btn-primary' onClick={()=>{handleup()}}>Add Song</button>
     </div>
+    </Fade>
     </Container>
         </Collapse>      
     </Container>
