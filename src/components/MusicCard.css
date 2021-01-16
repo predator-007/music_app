@@ -1,4 +1,18 @@
 body{
-    background-image: linear-gradient(rgb(94, 203, 223),rgb(94,204,226));
+  
+  background-color: rgb(110, 255, 248);
+}
+div.box{
+  height: 300px;
+  width: 300px;
+}
+@media only screen and (max-width: 400px){
+  div.box{
+    height : 250px;
+    width: 250px;
+  }
+  body{
+    background-color: rgb(89, 245, 172);
+  }
   
   }

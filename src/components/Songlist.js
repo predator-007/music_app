@@ -1,7 +1,7 @@
 import React from 'react';
-import {SONGS} from './Player';
 const Songlist=(
 {
+    songs,
     song,
     isPlaying,
     currentsongindex,
@@ -16,14 +16,26 @@ const Songlist=(
         setisPlaying(!isPlaying)
     }
     return(
-        <li class={isPlaying&SONGS.indexOf(song)===currentsongindex
+        <li class={isPlaying&songs.indexOf(song)===currentsongindex
             ?"fa fa-music fa-lg list-group-item list-group-item-success":"fa fa-music fa-lg list-group-item list-group-item"}
-        ><button className="btn" onClick={()=>changesong(SONGS.indexOf(song))}>{song}</button>
-        <button style={
-           { marginLeft: "80px"} 
+        ><div class="container">
+        <div class="row justify-content-between">
+        <div class="col-8">
+  
+        <button className="btn" onClick={()=>changesong(songs.indexOf(song))}>{song}</button>
+            
+        </div>
 
-        }className="btn fa fa-trash fa-sm" onClick={()=>deletesong(song)}></button></li>
+        <div class="col-2">
+    
+        <button className="btn fa fa-trash fa-sm" onClick={()=>deletesong(song)}></button>
+        </div>
+        </div>
         
+    </div>
+      
+    
+        </li>
     );
 }
 export default Songlist;

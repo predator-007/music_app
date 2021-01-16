@@ -75,9 +75,11 @@ const MusicCard = ({
 <div className="row justify-content-center">
     <div className="card d-flex m-5">
         <h5 className="card-title text-center mt-3">{song}</h5>
-        
-        <img src={"/image/headphones.jpg"} alt={song} className="card-img" style={{ height: "300px", width: "300px" }} />
-
+        <div className="Box">
+        <img src={"/image/headphones.jpg"} //style={
+         // {height:"280px",width:"300px"}}
+          alt={song} className="card-img"  />
+        </div>
         <div className="card-body justify-content-center">
         </div>
         <audio

@@ -1,29 +1,54 @@
 import React,{useEffect, useState} from 'react';
 import MusicCard from './MusicCard';
-//import {SONGS} from './songsinfo'
 import Lib from './Lib';
 import Container from '@material-ui/core/Container';
 import Collapse from '@material-ui/core/Collapse';
 import Axios from  'axios'; 
-//var a=localStorage.getItem("SONGS");
-//export var SONGS=JSON.parse(a);
-export var SONGS=["scam","krish","roja","Ramuloo Ramulaa","Butta Bomma","love me like you do","Faded","Tujhe kitna Chahne Lage"]
-console.log(SONGS);
+var data;
+var a=[];
+async function getdata(){
+     data=await Axios.get("https://musiclistapi007.herokuapp.com/");
+    
+    for(let i=0;i<data.data.length;i++)
+    {
+        a.push(data.data[i].title);
+    }
+    }
+getdata();
 function Player(){
+    const [SONGS,setSONGS]=useState(a);
     const [check,setcheck]=useState(false);
-    const [songs]=useState(SONGS);
+    const [songs,setsongs]=useState(SONGS);
+    const get=async()=>{
+        const  data=await Axios.get("https://musiclistapi007.herokuapp.com/");
+       const a=[]
+       for(let i=0;i<data.data.length;i++)
+       {
+           a.push(data.data[i].title);
+       }
+       setsongs(a);
+       console.log("executed");
+    }
+    useEffect(async()=>{
+        const  data=await Axios.get("https://musiclistapi007.herokuapp.com/");
+       const a=[]
+       for(let i=0;i<data.data.length;i++)
+       {
+           a.push(data.data[i].title);
+       }
+       setsongs(a);
+       },[])
+       useEffect(async()=>{
+          setSONGS(songs);
+          },[songs])
+    console.log(songs);
+   
     const [currentsongindex, setcurrentsongindex] = useState(0);
     const [isPlaying,setisPlaying]=useState(false);
     const [mode,setmode]=useState("repeat");
     const changenextSong= ()=>{
         setcurrentsongindex((currentsongindex+1)%songs.length)
     }
-    /*
-    useEffect(
-        ()=>{
-            SONGS=JSON.parse(localStorage.getItem("SONGS"));
-        }
-    ,[songs]);*/
     const changeprevSong=()=>{
         var k=currentsongindex-1;
         if(k===-1)
@@ -41,15 +66,16 @@ function Player(){
       setname(e.target.value);
       console.log(name);
    }
-   const handleup=()=>{
+   const handleup=async()=>{
       var bodyFormData=new FormData();
       bodyFormData.append("name",name);
       bodyFormData.append("track",track)
-      console.log(bodyFormData);
-      //SONGS.push(name);
-      //localStorage.setItem("SONGS",JSON.stringify(SONGS));
-      //setsongs(SONGS);
-      Axios({
+      const data=await Axios.post("https://musiclistapi007.herokuapp.com/",{
+         title : name
+      })
+      get();
+      setSONGS(songs);
+      const data1=await Axios({
          method: 'post',
          url: 'https://musicapi007.herokuapp.com/write',
          data: bodyFormData,
@@ -64,11 +90,11 @@ function Player(){
              console.log(response);
          });
         };
-    const deletesong=(name)=>{
-        //SONGS.splice(SONGS.indexOf(name));
-        //localStorage.setItem("SONGS",JSON.stringify(SONGS));
-        //setsongs(SONGS);
-        Axios.get("https://musicapi007.herokuapp.com/delete/"+name);
+    const deletesong=async(name)=>{
+        const data1=await Axios.get("https://musicapi007.herokuapp.com/delete/"+name);
+        const data=await Axios.delete("https://musiclistapi007.herokuapp.com/"+name);
+        get();
+        setSONGS(songs);
     }
 return(
     <Container>

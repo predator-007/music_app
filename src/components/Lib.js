@@ -16,6 +16,7 @@ return(
             songs.map((song) =>(
                 <ul class="list-group">
                 <Songlist
+                songs={songs}
                 song={song}
                 isPlaying={isPlaying}
                 currentsongindex={currentsongindex}
