@@ -153,15 +153,25 @@ return(
       </div>
       <br></br>
     <Fade in={fade}>
-    <div className="form-group">
+    <div class="container">
+    <div class="row justify-content-between">
+        <div class="col-4 flex">
+  
     <input className="form-control" type="text" placeholder="song name"
     onChange={(e)=>{handlename(e)}}
-    ></input>
+    ></input></div>
+    <div class="col-4 flex">
     <input className="form-control-file" type="file" onChange={(e)=>{handlefile(e)}}></input>
+    </div>
+    <div class="col-4 flex">
     <button className='btn-primary' onClick={()=>{handleup()}}>Add Song</button>
     </div>
+    </div>
+    </div>
     </Fade>
+    <br></br>
     </Container>
+
         </Collapse>      
     </Container>
 );

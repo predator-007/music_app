@@ -72,9 +72,9 @@ const MusicCard = ({
       };
 
     return( 
-<div className="row justify-content-center">
-    <div className="card d-flex m-5">
-        <h5 className="card-title text-center mt-3">{song}</h5>
+<div className="row justify-content-center" >
+    <div className="card d-flex m-5" style={{backgroundColor:"#ccebff",borderRadius:"4%"}}>
+        <h5 className="card-title text-center mt-3"style={{fontFamily: 'Potta One'}}>{song}</h5>
         <div className="Box">
         <img src={"/image/headphones.jpg"} //style={
          // {height:"280px",width:"300px"}}
@@ -94,11 +94,11 @@ const MusicCard = ({
 
 
 
-            <div className="time-stamps">
+            <div className="time-stamps ">
             <span className="col-2 timestamp">
               {songTime === 0 ? "00:00" : tostring(songTime)}
             </span>
-            <span className="col-8">
+            <span className="col-6">
               <input
                 className="time-stamp"
                 onInput={(e) => {
@@ -131,7 +131,7 @@ const MusicCard = ({
 
 
 
-        <div className="controls mt-2 mb-1">
+        <div className="controls mt-2 mb-1" >
             <div className="row justify-content-center mb-2">
                 <div className="col-7 " >
                     <button className="btn" onClick={
@@ -166,32 +166,7 @@ const MusicCard = ({
                         ></span>
                     </button>
                   
-                    <div className="d-flex justify-content-start" data-tip data-for="volume">
-                <button className="btn" id="volumeDropDown"
-                onClick={()=>handleinpv()}>
-                  <span
-                    className={
-                      "fa " + (vol > 0 ? "fa-volume-up fa-xs" : "fa-volume-off fa-xs")
-                    }
-                  ></span>
-                </button>
-                <input
-                  style={
-                      {
-                      visibility : inpv
-                      }
-                  }
-                  className="volume-dropdown pt-1"
-                  data-tip
-                  data-for="volume"
-                  type="range"
-                  value={vol}
-                  min={0}
-                  max={1}
-                  step={"any"}
-                  onInput={(e) => handlevol(e)}
-                />
-              </div>
+                
                 </div>
             </div>
         </div>
